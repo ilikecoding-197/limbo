@@ -21,7 +21,7 @@ jobs:
         cache: gradle
 
     - name: Init gradlew
-      run: gradle wrapper --warning-mode all
+      run: gradle wrapper --warning-mode all --gradle-version=4.1.1
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
