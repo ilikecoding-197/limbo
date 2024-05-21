@@ -34,13 +34,13 @@ mv SDL2-2.0.8 SDL2
 
 ### Apply patch for QEMU:
 # example for 5.1.0:
-cd ./limbo-android-lib/src/main/jni/qemu/
+cd ./qemu/
 patch -p1 < ../patches/qemu-5.1.0.patch
 
 ### Apply glib patch for Limbo:
-cd ./limbo-android-lib/src/main/jni/glib/
+cd ../glib/
 patch -p1 < ../patches/glib-2.56.1.patch
 
 ### Apply SDL2 patch for Limbo:
-cd ./limbo-android-lib/src/main/jni/SDL2/
+cd ../SDL2/
 patch -p1 < ../patches/sdl2-2.0.8.patch
