@@ -31,3 +31,16 @@ mv pixman-0.40.0 pixman
 wget https://www.libsdl.org/release/SDL2-2.0.8.tar.gz -P /tmp/
 tar -xzf /tmp/SDL2-2.0.8.tar.gz
 mv SDL2-2.0.8 SDL2
+
+### Apply patch for QEMU:
+# example for 5.1.0:
+cd ./limbo-android-lib/src/main/jni/qemu/
+patch -p1 < ../patches/qemu-5.1.0.patch
+
+### Apply glib patch for Limbo:
+cd ./limbo-android-lib/src/main/jni/glib/
+patch -p1 < ../patches/glib-2.56.1.patch
+
+### Apply SDL2 patch for Limbo:
+cd ./limbo-android-lib/src/main/jni/SDL2/
+patch -p1 < ../patches/sdl2-2.0.8.patch
