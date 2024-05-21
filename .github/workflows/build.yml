@@ -12,7 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: test
-      run: ls > ls.txt
     - name: Build.
-      run: ./build.sh
+      run: bash build.sh
