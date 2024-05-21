@@ -13,6 +13,6 @@ jobs:
 
     steps:
     - name: test
-      run: ls
+      run: ls > ls.txt
     - name: Build.
       run: ./build.sh
