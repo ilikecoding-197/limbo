@@ -12,5 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build.
+    - name: checkout repo
+      uses: actions/checkout@v4
+    - name: build
       run: bash build.sh
