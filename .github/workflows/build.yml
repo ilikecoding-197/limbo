@@ -26,4 +26,4 @@ jobs:
       with:
         name: Limbo-Emulator-APK
         path: |
-          limbo-android-lib/build/outputs/apk/release/*.apk
+          $GITHUB_WORKSPACE/limbo-android-lib/build/outputs/apk/release/*.apk
