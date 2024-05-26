@@ -1,6 +1,6 @@
 # Needed packages
 sudo apt-get update
-sudo apt-get install make autoconf automake git python binutils gtk-doc-tools
+sudo apt-get install make autoconf automake git python3 binutils gtk-doc-tools
 sudo apt-get install libtool-bin pkg-config flex bison gettext texinfo rsync
 sudo apt-get install -y wget unzip libncurses5
 
