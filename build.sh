@@ -55,9 +55,11 @@ export NDK_ROOT="$GITHUB_WORKSPACE/android-ndk-r14b"
 export BUILD_HOST="arm64-v8a"
 export BUILD_GUEST="x86_64-softmmu"
 
-# Download and set up Android SDK
+# Install needed packages
 sudo apt-get update
-sudo apt-get install -y wget unzip
+sudo apt-get install -y wget unzip libncurses5
+
+# Download and set up Android SDK
 wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O cmdline-tools.zip
 mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
 unzip -q cmdline-tools.zip -d "$ANDROID_SDK_ROOT/cmdline-tools"
