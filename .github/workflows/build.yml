@@ -12,7 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout repo
+    - name: Checkout the repo
       uses: actions/checkout@v4
-    - name: build
+    - name: Set up JDK.
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - name: Build!
       run: bash build.sh
+    - name: Upload the APK!
+      uses: actions/upload-artifact@v3
+      with:
+        name: Limbo-Emulator-APK
+        path: |
+          limbo-android-lib/build/outputs/apk/release/*.apk
