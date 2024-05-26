@@ -47,32 +47,38 @@ patch -p1 < ../patches/sdl2-2.0.8.patch
 
 cd ..
 
-export ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk
-export NDK_ROOT=${{ github.workspace }}/android-ndk-r14b
-export BUILD_HOST=arm64-v8a
-export BUILD_GUEST=x86_64-softmmu
+set -e
 
+# Set up environment variables
+export ANDROID_SDK_ROOT="$GITHUB_WORKSPACE/android-sdk"
+export NDK_ROOT="$GITHUB_WORKSPACE/android-ndk-r14b"
+export BUILD_HOST="arm64-v8a"
+export BUILD_GUEST="x86_64-softmmu"
+
+# Download and set up Android SDK
 sudo apt-get update
 sudo apt-get install -y wget unzip
 wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O cmdline-tools.zip
-mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
-unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
-mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
-yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
+unzip -q cmdline-tools.zip -d "$ANDROID_SDK_ROOT/cmdline-tools"
+mv "$ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools" "$ANDROID_SDK_ROOT/cmdline-tools/latest"
+yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses
+"$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
+# Download and set up Android NDK
 wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip -O android-ndk-r14b.zip
-unzip -q android-ndk-r14b.zip -d ${{ github.workspace }}
+unzip -q android-ndk-r14b.zip -d "$GITHUB_WORKSPACE"
 
-export PATH=$NDK_ROOT:$PATH
-export NDK_ROOT=$NDK_ROOT
-export BUILD_HOST=$BUILD_HOST
-export BUILD_GUEST=$BUILD_GUEST
+# Build native libraries
+cd limbo-android-lib/src/main/jni
+export PATH="$NDK_ROOT:$PATH"
 make limbo
 
+# Set up Gradle
 wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
-unzip -q gradle-7.4.2-bin.zip -d ${{ github.workspace }}
-export PATH=${{ github.workspace }}/gradle-7.4.2/bin:$PATH
+unzip -q gradle-7.4.2-bin.zip -d "$GITHUB_WORKSPACE"
+export PATH="$GITHUB_WORKSPACE/gradle-7.4.2/bin:$PATH"
 
-cd ${{ github.workspace }}
+# Build APK
+cd "$GITHUB_WORKSPACE"
 ./gradlew assembleRelease
