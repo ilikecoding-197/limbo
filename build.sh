@@ -44,3 +44,35 @@ patch -p1 < ../patches/glib-2.56.1.patch
 ### Apply SDL2 patch for Limbo:
 cd ../SDL2/
 patch -p1 < ../patches/sdl2-2.0.8.patch
+
+cd ..
+
+export ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk
+export NDK_ROOT=${{ github.workspace }}/android-ndk-r14b
+export BUILD_HOST=arm64-v8a
+export BUILD_GUEST=x86_64-softmmu
+
+sudo apt-get update
+sudo apt-get install -y wget unzip
+wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O cmdline-tools.zip
+mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
+unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
+mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip -O android-ndk-r14b.zip
+unzip -q android-ndk-r14b.zip -d ${{ github.workspace }}
+
+export PATH=$NDK_ROOT:$PATH
+export NDK_ROOT=$NDK_ROOT
+export BUILD_HOST=$BUILD_HOST
+export BUILD_GUEST=$BUILD_GUEST
+make limbo
+
+wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
+unzip -q gradle-7.4.2-bin.zip -d ${{ github.workspace }}
+export PATH=${{ github.workspace }}/gradle-7.4.2/bin:$PATH
+
+cd ${{ github.workspace }}
+./gradlew assembleRelease
