@@ -51,7 +51,7 @@ set -e
 
 # Set up environment variables
 export ANDROID_SDK_ROOT="$GITHUB_WORKSPACE/android-sdk"
-export NDK_ROOT="$GITHUB_WORKSPACE/android-ndk-r14b"
+export NDK_ROOT="$GITHUB_WORKSPACE/android-ndk-r23b"
 export BUILD_HOST="arm64-v8a"
 export BUILD_GUEST="x86_64-softmmu"
 
@@ -68,8 +68,8 @@ yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses
 "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
 # Download and set up Android NDK
-wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip -O android-ndk-r14b.zip
-unzip -q android-ndk-r14b.zip -d "$GITHUB_WORKSPACE"
+wget https://dl.google.com/android/repository/android-ndk-r23b-linux.zip -O android-ndk-r23b.zip
+unzip -q android-ndk-r23b.zip -d "$GITHUB_WORKSPACE"
 
 # Build native libraries
 export PATH="$NDK_ROOT:$PATH"
