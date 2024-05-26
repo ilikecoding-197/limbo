@@ -8,7 +8,7 @@ cd ./limbo-android-lib/src/main/jni
 # download link:  http://download.qemu-project.org/qemu-x.x.x.tar.xz 
 # Current versions supported by limbo: 5.1.0 and 2.9.1
 # example for version 5.1.0:
-wget http://download.qemu-project.org/qemu-5.1.0.tar.xz -P /tmp/
+wget https://download.qemu.org/qemu-5.1.0.tar.xz -P /tmp/
 tar -xJf /tmp/qemu-5.1.0.tar.xz
 mv qemu-5.1.0 qemu
 
