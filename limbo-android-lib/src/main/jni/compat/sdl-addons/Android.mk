@@ -6,7 +6,7 @@ include $(CLEAR_VARS)
 LOCAL_CFLAGS += -target $(TARGET_PREFIX)26
 LOCAL_LDFLAGS += -target $(TARGET_PREFIX)26
 
-LOCAL_SHARED_LIBRARIES := aaudio
+LOCAL_LDLIBS += -laaudio
 
 LOCAL_MODULE := compat-SDL2-addons
 LOCAL_SRC_FILES := SDL_limboaudio.c
