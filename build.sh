@@ -84,4 +84,5 @@ export PATH="$GITHUB_WORKSPACE/gradle-7.4.2/bin:$PATH"
 
 # Build APK
 cd "$GITHUB_WORKSPACE"
+gradle wrapper
 ./gradlew assembleRelease
