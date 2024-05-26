@@ -1,3 +1,9 @@
+# Needed packages
+sudo apt-get update
+sudo apt-get install make autoconf automake git python binutils gtk-doc-tools
+sudo apt-get install libtool-bin pkg-config flex bison gettext texinfo rsync
+sudo apt-get install -y wget unzip libncurses5
+
 #Make sure you're under the jni directory
 cd ./limbo-android-lib/src/main/jni
 
@@ -54,10 +60,6 @@ export ANDROID_SDK_ROOT="$GITHUB_WORKSPACE/android-sdk"
 export NDK_ROOT="$GITHUB_WORKSPACE/android-ndk-r23b"
 export BUILD_HOST="arm64-v8a"
 export BUILD_GUEST="x86_64-softmmu"
-
-# Install needed packages
-sudo apt-get update
-sudo apt-get install -y wget unzip libncurses5
 
 # Download and set up Android SDK
 wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O cmdline-tools.zip
