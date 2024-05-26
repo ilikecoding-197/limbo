@@ -70,7 +70,6 @@ wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip 
 unzip -q android-ndk-r14b.zip -d "$GITHUB_WORKSPACE"
 
 # Build native libraries
-cd limbo-android-lib/src/main/jni
 export PATH="$NDK_ROOT:$PATH"
 make limbo
 
