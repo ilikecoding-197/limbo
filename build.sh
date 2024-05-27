@@ -89,3 +89,12 @@ gradle wrapper
 
 pwd
 ls
+
+cd limbo-android-lib
+cd build
+cd outputs
+cd apk
+cd release
+
+pwd
+ls
