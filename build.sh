@@ -86,3 +86,6 @@ export PATH="$GITHUB_WORKSPACE/gradle-7.4.2/bin:$PATH"
 cd "$GITHUB_WORKSPACE"
 gradle wrapper
 ./gradlew assembleRelease
+
+pwd
+ls
