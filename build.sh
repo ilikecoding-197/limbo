@@ -93,6 +93,10 @@ ls
 cd limbo-android-lib
 cd build
 cd outputs
+
+pwd
+ls
+
 cd apk
 cd release
 
